@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         DownloadTask downloadTask = new DownloadTask();
-        downloadTask.execute("http://samples.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=b18a535959e762f33271e3dc7978fad3");
+        downloadTask.execute("http://api.openweathermap.org/data/2.5/weather?q=omaha&appid=b18a535959e762f33271e3dc7978fad3");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
