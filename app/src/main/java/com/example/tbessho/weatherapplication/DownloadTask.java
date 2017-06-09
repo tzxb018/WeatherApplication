@@ -2,6 +2,7 @@ package com.example.tbessho.weatherapplication;
 
 import android.os.AsyncTask;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.InputStream;
@@ -55,20 +56,27 @@ public class DownloadTask extends AsyncTask <String, Void, String> {
         //result looks like copied string
         //convert to JSON to be able to parse through
         //try catch expetion in case person does not have internet connection
+
         try {
             JSONObject jsonObject = new JSONObject(result);
 
-            //String weatherInfo = jsonObject.getString("weather");
-            JSONObject weatherData = new JSONObject(jsonObject.getString("main"));
+            String weatherInfo = jsonObject.getString("weather");
 
+            JSONObject weatherData = new JSONObject(jsonObject.getString("main"));
             double tempInt = Double.parseDouble(weatherData.getString("temp"));
-            int tempIn = (int) (tempInt*1.8 -459.67); //convert from K to F
+            int tempIn = (int) (tempInt * 1.8 - 459.67);
 
             String placeName = jsonObject.getString("name");
 
+            JSONArray weatherStuff = new JSONArray(weatherInfo);
+
+            JSONObject jsonPart = (JSONObject) weatherStuff.get(0); //take from array
+            String condition = jsonPart.getString("main"); //next step on hierarchy, take from string stuff
+
             //Make sure to code in set Text for temp here
-            MainActivity.temp.setText(String.valueOf(tempIn));
+            MainActivity.temp.setText("Current Temperature: " + String.valueOf(tempIn) + "F");
             MainActivity.place.setText(placeName);
+            MainActivity.weather.setText(condition);
 
         } catch (Exception e) {
             e.printStackTrace();

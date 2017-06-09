@@ -13,15 +13,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Omaha"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="30dp"
+        app:layout_editor_absoluteX="140dp"
+        app:layout_editor_absoluteY="100dp"
+        android:textAlignment="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="32dp"
+        app:layout_constraintHorizontal_bias="0.503" />
 
     <TextView
+        android:id="@+id/txtTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "Large text"
-        android:id = "@+id/txtTemp"/>
+        android:layout_marginTop="28dp"
+        android:text="Current Temp"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_dark"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+    <TextView
+        android:id="@+id/txtWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Weather Condition"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTemp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     static TextView place;
     static TextView temp;
+    static TextView weather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         place = (TextView) findViewById(R.id.txtName);
         temp = (TextView) findViewById(R.id.txtTemp);
-
+        weather = (TextView) findViewById(R.id.txtWeather);
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         String provider = locationManager.getBestProvider(new Criteria(), false);
