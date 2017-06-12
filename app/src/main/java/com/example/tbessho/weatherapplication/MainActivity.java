@@ -7,21 +7,21 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
     static TextView place;
     static TextView temp;
     static TextView weather;
+    static TextView updatedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         place = (TextView) findViewById(R.id.txtName);
         temp = (TextView) findViewById(R.id.txtTemp);
         weather = (TextView) findViewById(R.id.txtWeather);
+        updatedTime = (TextView) findViewById(R.id.txtUpdated);
+
+        String timeStamp  = DateFormat.getDateTimeInstance().format(new Date());
+        updatedTime.setText("Last updated:" + timeStamp);
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         String provider = locationManager.getBestProvider(new Criteria(), false);
@@ -53,18 +57,10 @@ public class MainActivity extends AppCompatActivity {
         lat = location.getLatitude();
         lon = location.getLongitude();
 
-
         DownloadTask downloadTask = new DownloadTask();
-        downloadTask.execute("http://api.openweathermap.org/data/2.5/weather?q=omaha&appid=b18a535959e762f33271e3dc7978fad3");
+        downloadTask.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=434bec562fd0bc83a9abed6b6832ebaa");
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
     }
 
     @Override
@@ -74,18 +70,4 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

@@ -78,6 +78,9 @@ public class DownloadTask extends AsyncTask <String, Void, String> {
             MainActivity.place.setText(placeName);
             MainActivity.weather.setText(condition);
 
+
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
